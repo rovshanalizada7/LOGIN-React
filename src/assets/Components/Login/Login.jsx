@@ -16,15 +16,13 @@ const Login = () => {
     const [error, setError] = useState('');
 
     const checkApi = async () => {
-            const response = await axios.get("https://67007c964da5bd2375542275.mockapi.io/users");
-            const users = response.data;
-            console.log(users);
-            
-            
+            const res = await axios.get("https://67007c964da5bd2375542275.mockapi.io/users");
+            const users = res.data;
+ 
             const user = users.find(user => user.username === username && user.password === password);
 
             if (user) {
-                navigate(`/welcome/${user.username}`);
+                navigate(`/welcome/${user.id}`);
             } else {
                 setError('Invalid username or password');
             }
